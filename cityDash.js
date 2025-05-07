@@ -10,12 +10,20 @@ async function getDashboardData (query){
   const responseWeather = fetchJson(`https://boolean-spec-frontend.vercel.app/freetestapi/weathers?search=${query}`)
   const responseAirport = fetchJson(`https://boolean-spec-frontend.vercel.app/freetestapi/airports?search=${query}`)
   const result = await Promise.all(responseDestination, responseWeather, responseAirport)
-  
+
+  return {
+    city: destinations[0].name,
+    country : destinations[0].country,
+    temperature: wheathers[0].tempearute,
+    weather: wheathers[0].weather_descriptions,
+    airport: airport[0].name
+
+
+
+  } 
 }
 
-// (async () =>{
-  
-// })();
+
 
 getDashboardData('london')
     .then(data => {
